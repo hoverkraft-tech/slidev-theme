@@ -1,0 +1,71 @@
+name: Common Continuous Integration tasks
+
+on:
+  workflow_call:
+    outputs:
+      build-artifact-id:
+        description: "The artifact ID of the slides build output"
+        value: ${{ jobs.nodejs.outputs.build-artifact-id }}
+      package-tarball-artifact-id:
+        description: "The artifact ID of the uploaded package tarball"
+        value: ${{ jobs.package-test.outputs.package-tarball-artifact-id }}
+
+permissions: {}
+
+jobs:
+  linter:
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@b48521243b3ce4824d46bf414c32d8078171b48b # 0.35.1
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+      statuses: write
+    with:
+      linter-env: |
+        FILTER_REGEX_EXCLUDE=packages/slides/dist/**/*
+        VALIDATE_TYPESCRIPT_ES=false
+        VALIDATE_JAVASCRIPT_ES=false
+        VALIDATE_TSX=false
+        VALIDATE_CSS=false
+
+  nodejs:
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@6b74a8f070140f5c120f78026d58e4c00d1b1e37 # 0.24.2
+    permissions:
+      contents: read
+      id-token: write
+      packages: read
+      pull-requests: write
+      security-events: write
+    with:
+      build: |
+        {
+          "artifact": ["packages/slides/dist"]
+        }
+
+  package-test:
+    name: Package and verify Slidev theme
+    needs: [linter, nodejs]
+    runs-on: ubuntu-latest
+    outputs:
+      package-tarball-artifact-id: ${{ steps.package.outputs.package-tarball-artifact-id }}
+    permissions:
+      contents: read
+    steps:
+      - id: package
+        name: Create package tarball
+        uses: hoverkraft-tech/ci-github-nodejs/actions/package@6b74a8f070140f5c120f78026d58e4c00d1b1e37 # 0.24.2
+        with:
+          working-directory: .
+          package-directory: packages/theme
+          build-artifact-id: ${{ needs.nodejs.outputs.build-artifact-id }}
+          build-artifact-path: /
+          version: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
+
+      - name: Build slides with packaged theme
+        working-directory: packages/slides
+        env:
+          PACKAGE_TARBALL_PATH: ${{ steps.package.outputs.package-tarball-path }}
+        run: |
+          npm uninstall @hoverkraft/slidev-theme || true
+          npm install "${PACKAGE_TARBALL_PATH}"
+          npm run build
