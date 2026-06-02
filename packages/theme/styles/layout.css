@@ -1,0 +1,381 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600;700&display=swap");
+
+/*
+ * Hoverkraft Slidev theme - a professional, modern, light design system.
+ * Light mode is enforced; all surfaces, type, and accents are tuned for clarity.
+ */
+:root {
+  color-scheme: light;
+
+  /* Brand palette */
+  --hk-color-primary: #0073cc;
+  --hk-color-primary-strong: #005aa3;
+  --hk-color-primary-soft: rgba(0, 115, 204, 0.12);
+  --hk-color-secondary: #cc4400;
+  --hk-color-secondary-soft: rgba(204, 68, 0, 0.12);
+
+  /* Neutral surfaces */
+  --hk-color-bg: #ffffff;
+  --hk-color-surface: #ffffff;
+  --hk-color-surface-muted: #f4f7fb;
+  --hk-color-surface-sunken: #eaf0f7;
+  --hk-color-border: #e4e9f0;
+  --hk-color-border-strong: #d0d8e3;
+
+  /* Text */
+  --hk-color-dark: #15202e;
+  --hk-color-text: #15202e;
+  --hk-color-text-muted: #54637a;
+  --hk-color-text-subtle: #8593a6;
+  --hk-color-light: #f8f9fa;
+
+  /* Shape and depth */
+  --hk-radius-sm: 0.5rem;
+  --hk-radius: 0.9rem;
+  --hk-radius-lg: 1.4rem;
+  --hk-shadow-sm:
+    0 1px 2px rgba(15, 30, 55, 0.05), 0 2px 6px rgba(15, 30, 55, 0.06);
+  --hk-shadow-md: 0 12px 28px -16px rgba(15, 30, 55, 0.3);
+  --hk-shadow-lg: 0 36px 70px -30px rgba(15, 30, 55, 0.4);
+
+  /* Slidev bindings */
+  --slidev-theme-primary: var(--hk-color-primary);
+  --slidev-theme-accent: var(--hk-color-secondary);
+  --slidev-theme-font-family:
+    "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --slidev-code-font-family:
+    "Roboto Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+
+html,
+body,
+#app {
+  font-family: var(--slidev-theme-font-family);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Base slide ---------- */
+.slidev-layout {
+  font-family: var(--slidev-theme-font-family);
+  color: var(--hk-color-text);
+  background-color: var(--hk-color-bg);
+  background-image: linear-gradient(180deg, #ffffff 0%, #f8fafd 100%);
+  padding: 3.25rem 4rem;
+  line-height: 1.62;
+  letter-spacing: -0.003em;
+}
+
+/* ---------- Headings ---------- */
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3,
+.slidev-layout h4 {
+  color: var(--hk-color-text);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.18;
+}
+
+.slidev-layout h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.slidev-layout h2 {
+  position: relative;
+  font-size: 1.85rem;
+  padding-bottom: 0.65rem;
+  margin-bottom: 1.5rem;
+}
+
+.slidev-layout h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2.75rem;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--hk-color-primary),
+    var(--hk-color-secondary)
+  );
+}
+
+.slidev-layout h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+/* ---------- Body ---------- */
+.slidev-layout p,
+.slidev-layout li {
+  color: var(--hk-color-text-muted);
+}
+
+.slidev-layout strong {
+  color: var(--hk-color-text);
+  font-weight: 600;
+}
+
+a {
+  color: var(--hk-color-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hk-color-primary-soft);
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+a:hover {
+  color: var(--hk-color-primary-strong);
+  border-bottom-color: currentColor;
+}
+
+.slidev-layout ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.slidev-layout ul > li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin: 0.35rem 0;
+}
+
+.slidev-layout ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0.1rem;
+  top: 0.62em;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  background: linear-gradient(
+    135deg,
+    var(--hk-color-primary),
+    var(--hk-color-secondary)
+  );
+}
+
+.slidev-layout ol {
+  padding-left: 1.25rem;
+}
+
+/* ---------- Code ---------- */
+.slidev-layout kbd,
+.slidev-layout code,
+.slidev-layout pre {
+  font-family: var(--slidev-code-font-family);
+}
+
+.slidev-layout :not(pre) > code {
+  font-size: 0.84em;
+  padding: 0.15em 0.42em;
+  border-radius: 0.42em;
+  color: var(--hk-color-primary-strong);
+  background: var(--hk-color-primary-soft);
+}
+
+.slidev-layout pre {
+  border: 1px solid var(--hk-color-border);
+  border-radius: var(--hk-radius);
+  box-shadow: var(--hk-shadow-sm);
+}
+
+/* ---------- Blockquote ---------- */
+.slidev-layout blockquote {
+  border-left: 3px solid var(--hk-color-secondary);
+  background: var(--hk-color-surface-muted);
+  border-radius: 0 var(--hk-radius-sm) var(--hk-radius-sm) 0;
+  padding: 0.85rem 1.15rem;
+  color: var(--hk-color-text-muted);
+  font-style: normal;
+}
+
+/* ---------- Table ---------- */
+.slidev-layout table {
+  border-collapse: collapse;
+  border-radius: var(--hk-radius);
+  overflow: hidden;
+  box-shadow: var(--hk-shadow-sm);
+}
+
+.slidev-layout th {
+  background: var(--hk-color-surface-sunken);
+  color: var(--hk-color-text);
+  font-weight: 600;
+  text-align: left;
+}
+
+.slidev-layout th,
+.slidev-layout td {
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid var(--hk-color-border);
+}
+
+/* ---------- Helper components ---------- */
+.hk-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hk-color-primary-strong);
+}
+
+.hk-eyebrow__dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    var(--hk-color-primary),
+    var(--hk-color-secondary)
+  );
+}
+
+.hk-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--hk-color-primary-strong);
+  background: var(--hk-color-primary-soft);
+}
+
+.hk-card {
+  padding: 1.25rem 1.4rem;
+  border-radius: var(--hk-radius);
+  border: 1px solid var(--hk-color-border);
+  background: var(--hk-color-surface);
+  box-shadow: var(--hk-shadow-sm);
+}
+
+.hk-card > :first-child {
+  margin-top: 0;
+}
+
+.hk-card > :last-child {
+  margin-bottom: 0;
+}
+
+.hk-card--accent {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--hk-color-surface), var(--hk-color-surface))
+      padding-box,
+    linear-gradient(135deg, var(--hk-color-primary), var(--hk-color-secondary))
+      border-box;
+}
+
+.hk-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.hk-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hk-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hk-swatch {
+  overflow: hidden;
+  border-radius: var(--hk-radius);
+  border: 1px solid var(--hk-color-border);
+  background: var(--hk-color-surface);
+  box-shadow: var(--hk-shadow-sm);
+}
+
+.hk-swatch__chip {
+  height: 4.5rem;
+}
+
+.hk-swatch__meta {
+  padding: 0.75rem 0.9rem;
+}
+
+.hk-swatch__name {
+  font-weight: 600;
+  color: var(--hk-color-text);
+}
+
+.hk-swatch__value {
+  font-family: var(--slidev-code-font-family);
+  font-size: 0.82rem;
+  color: var(--hk-color-text-subtle);
+}
+
+/* ---------- Cover layout ---------- */
+.slidev-layout.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  padding: 4rem 5rem;
+  background-color: var(--hk-color-bg);
+  background-image:
+    radial-gradient(
+      120% 120% at 100% 0,
+      var(--hk-color-primary-soft),
+      transparent 45%
+    ),
+    radial-gradient(
+      120% 120% at 0 100%,
+      var(--hk-color-secondary-soft),
+      transparent 48%
+    ),
+    linear-gradient(180deg, #ffffff 0%, #f6f9fd 100%);
+}
+
+.hk-cover {
+  max-width: 52rem;
+}
+
+.hk-cover__body {
+  margin-top: 1.4rem;
+}
+
+.slidev-layout.cover h1 {
+  font-size: 3.4rem;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  background: linear-gradient(
+    120deg,
+    var(--hk-color-text) 35%,
+    var(--hk-color-primary)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.slidev-layout.cover p {
+  max-width: 40rem;
+  font-size: 1.25rem;
+  color: var(--hk-color-text-muted);
+}
+
+.hk-cover__rule {
+  width: 4.5rem;
+  height: 4px;
+  margin-top: 1.6rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--hk-color-primary),
+    var(--hk-color-secondary)
+  );
+}
