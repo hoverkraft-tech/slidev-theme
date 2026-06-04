@@ -1,9 +1,14 @@
 <script setup>
+import { useAccessibleSvg } from "./useAccessibleSvg.js";
+
 const props = defineProps({
-  size: { type: String, default: "1em" },
-  label: { type: String, default: "Hoverkraft" },
-  decorative: { type: Boolean, default: false },
+	size: { type: String, default: "1em" },
+	label: { type: String, default: "Hoverkraft" },
+	decorative: { type: Boolean, default: false },
 });
+
+const { svgAttributes: _svgAttributes, svgStyle: _svgStyle } =
+	useAccessibleSvg(props);
 </script>
 
 <template>
@@ -15,12 +20,8 @@ const props = defineProps({
     :role="props.decorative ? undefined : 'img'"
     :aria-label="props.decorative ? undefined : props.label"
     :aria-hidden="props.decorative ? 'true' : undefined"
-    :style="{
-      height: props.size,
-      width: 'auto',
-      display: 'inline-block',
-      verticalAlign: 'middle',
-    }"
+    v-bind="_svgAttributes"
+    :style="_svgStyle"
   >
     <defs>
       <linearGradient

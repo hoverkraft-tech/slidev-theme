@@ -1,6 +1,6 @@
 <script setup>
 defineOptions({
-  name: "HoverkraftCoverLayout",
+	name: "HoverkraftCoverLayout",
 });
 </script>
 

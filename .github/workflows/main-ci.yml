@@ -14,7 +14,6 @@ concurrency:
 jobs:
   ci:
     uses: ./.github/workflows/__shared-ci.yml
-    secrets: inherit
     permissions:
       actions: read
       contents: read

@@ -14,19 +14,12 @@ permissions: {}
 
 jobs:
   linter:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@b553a696531fbd36743ccbb0c76c717971b8acdb # 0.35.4
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@4bb7594b1bf3696c54b2bbae970376056853f8ea # 0.36.0
     permissions:
       actions: read
       contents: read
       security-events: write
       statuses: write
-    with:
-      linter-env: |
-        FILTER_REGEX_EXCLUDE=packages/slides/dist/**/*
-        VALIDATE_TYPESCRIPT_ES=false
-        VALIDATE_JAVASCRIPT_ES=false
-        VALIDATE_TSX=false
-        VALIDATE_CSS=false
 
   nodejs:
     uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@6b74a8f070140f5c120f78026d58e4c00d1b1e37 # 0.24.2

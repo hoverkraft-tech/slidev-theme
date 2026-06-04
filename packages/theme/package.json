@@ -1,72 +1,72 @@
 {
-  "name": "@hoverkraft/slidev-theme",
-  "version": "0.1.0",
-  "description": "Hoverkraft branding theme for Slidev",
-  "main": "styles/index.js",
-  "scripts": {
-    "build": "npm pack --dry-run",
-    "lint": "node --check styles/index.js && node --check test/theme.test.mjs",
-    "lint:fix": "npm run lint",
-    "lint:ci": "npm run lint",
-    "test": "node --test",
-    "test:ci": "node --test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hoverkraft-tech/slidev-theme.git",
-    "directory": "packages/theme"
-  },
-  "keywords": [
-    "slidev-theme",
-    "slidev",
-    "hoverkraft"
-  ],
-  "author": "Hoverkraft",
-  "license": "MIT",
-  "type": "module",
-  "bugs": {
-    "url": "https://github.com/hoverkraft-tech/slidev-theme/issues"
-  },
-  "homepage": "https://github.com/hoverkraft-tech/slidev-theme#readme",
-  "engines": {
-    "node": ">=18.0.0",
-    "slidev": ">=51.0.0"
-  },
-  "peerDependencies": {
-    "@slidev/cli": ">=51.0.0"
-  },
-  "dependencies": {
-    "slidev-addon-rabbit": "^0.4.0",
-    "slidev-addon-typst": "^1.0.2",
-    "slidev-component-pager": "^1.1.0",
-    "slidev-component-progress": "^1.1.0",
-    "slidev-component-zoom": "^1.1.0",
-    "slidev-pane": "^0.1.8"
-  },
-  "files": [
-    "components",
-    "layouts",
-    "styles",
-    "README.md",
-    "LICENSE"
-  ],
-  "slidev": {
-    "colorSchema": "light",
-    "defaults": {
-      "addons": [
-        "slidev-addon-typst",
-        "slidev-component-pager",
-        "slidev-component-progress",
-        "slidev-component-zoom",
-        "slidev-pane",
-        "slidev-addon-rabbit"
-      ],
-      "fonts": {
-        "sans": "Inter",
-        "serif": "Inter",
-        "mono": "Roboto Mono",
-        "weights": "400,500,600,700,800"
-      }
-    }
-  }
+	"name": "@hoverkraft/slidev-theme",
+	"version": "0.1.0",
+	"description": "Hoverkraft branding theme for Slidev",
+	"main": "styles/index.js",
+	"scripts": {
+		"build": "npm pack --dry-run",
+		"lint": "node --check styles/index.js && node --check test/theme.test.mjs",
+		"lint:fix": "npm run lint",
+		"lint:ci": "npm run lint",
+		"test": "node --test",
+		"test:ci": "node --test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/hoverkraft-tech/slidev-theme.git",
+		"directory": "packages/theme"
+	},
+	"keywords": [
+		"slidev-theme",
+		"slidev",
+		"hoverkraft"
+	],
+	"author": "Hoverkraft",
+	"license": "MIT",
+	"type": "module",
+	"bugs": {
+		"url": "https://github.com/hoverkraft-tech/slidev-theme/issues"
+	},
+	"homepage": "https://github.com/hoverkraft-tech/slidev-theme#readme",
+	"engines": {
+		"node": ">=18.0.0",
+		"slidev": ">=51.0.0"
+	},
+	"peerDependencies": {
+		"@slidev/cli": ">=51.0.0"
+	},
+	"dependencies": {
+		"slidev-addon-rabbit": "^0.4.0",
+		"slidev-addon-typst": "^1.0.2",
+		"slidev-component-pager": "^1.1.0",
+		"slidev-component-progress": "^1.1.0",
+		"slidev-component-zoom": "^1.1.0",
+		"slidev-pane": "^0.1.8"
+	},
+	"files": [
+		"components",
+		"layouts",
+		"styles",
+		"README.md",
+		"LICENSE"
+	],
+	"slidev": {
+		"colorSchema": "light",
+		"defaults": {
+			"addons": [
+				"slidev-addon-typst",
+				"slidev-component-pager",
+				"slidev-component-progress",
+				"slidev-component-zoom",
+				"slidev-pane",
+				"slidev-addon-rabbit"
+			],
+			"fonts": {
+				"sans": "Inter",
+				"serif": "Inter",
+				"mono": "Roboto Mono",
+				"weights": "400,500,600,700,800"
+			}
+		}
+	}
 }

@@ -1,26 +1,26 @@
 {
-  "name": "@hoverkraft/slidev-theme-slides",
-  "private": true,
-  "version": "0.0.0",
-  "description": "Example Slidev deck for the Hoverkraft Slidev theme.",
-  "type": "module",
-  "engines": {
-    "node": ">=20.12.0"
-  },
-  "scripts": {
-    "start": "slidev example.md --open",
-    "build": "slidev build example.md --out dist",
-    "lint": "node --check smoke.test.mjs",
-    "lint:fix": "npm run lint",
-    "lint:ci": "npm run lint",
-    "test": "node --test smoke.test.mjs",
-    "test:ci": "node --test smoke.test.mjs"
-  },
-  "dependencies": {
-    "@hoverkraft/slidev-theme": "file:../theme"
-  },
-  "devDependencies": {
-    "@slidev/cli": "^52.15.2",
-    "vite": "^8.0.16"
-  }
+	"name": "@hoverkraft/slidev-theme-slides",
+	"private": true,
+	"version": "0.0.0",
+	"description": "Example Slidev deck for the Hoverkraft Slidev theme.",
+	"type": "module",
+	"engines": {
+		"node": ">=20.12.0"
+	},
+	"scripts": {
+		"start": "slidev example.md --open",
+		"build": "slidev build example.md --out dist",
+		"lint": "node --check smoke.test.mjs",
+		"lint:fix": "npm run lint",
+		"lint:ci": "npm run lint",
+		"test": "node --test smoke.test.mjs",
+		"test:ci": "node --test smoke.test.mjs"
+	},
+	"dependencies": {
+		"@hoverkraft/slidev-theme": "file:../theme"
+	},
+	"devDependencies": {
+		"@slidev/cli": "^52.15.2",
+		"vite": "^8.0.16"
+	}
 }
