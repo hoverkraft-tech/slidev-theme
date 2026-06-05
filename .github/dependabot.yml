@@ -7,6 +7,8 @@ updates:
     versioning-strategy: increase
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
     groups:
       npm-development-dependencies:
         dependency-type: "development"
@@ -22,6 +24,8 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
     groups:
       github-actions-dependencies:
         patterns:
@@ -32,12 +36,16 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
 
   - package-ecosystem: "docker"
     open-pull-requests-limit: 20
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
     groups:
       docker-dependencies:
         patterns:

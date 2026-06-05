@@ -1,28 +1,28 @@
 <script setup>
 import { computed } from "vue";
 
-const props = defineProps({
-  size: { type: String, default: "1.6em" },
-  label: { type: String, default: "Hoverkraft" },
-  decorative: { type: Boolean, default: false },
+const _props = defineProps({
+	size: { type: String, default: "1.6em" },
+	label: { type: String, default: "Hoverkraft" },
+	decorative: { type: Boolean, default: false },
 });
 
-const svgAttributes = computed(() => {
-  if (props.decorative) {
-    return { "aria-hidden": "true" };
-  }
+const _svgAttributes = computed(() => {
+	if (_props.decorative) {
+		return { "aria-hidden": "true" };
+	}
 
-  return {
-    role: "img",
-    "aria-label": props.label,
-  };
+	return {
+		role: "img",
+		"aria-label": _props.label,
+	};
 });
 
-const svgStyle = computed(() => ({
-  height: props.size,
-  width: "auto",
-  display: "inline-block",
-  verticalAlign: "middle",
+const _svgStyle = computed(() => ({
+	height: _props.size,
+	width: "auto",
+	display: "inline-block",
+	verticalAlign: "middle",
 }));
 </script>
 
@@ -32,8 +32,8 @@ const svgStyle = computed(() => ({
     xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 283.33 61.24"
     focusable="false"
-    v-bind="svgAttributes"
-    :style="svgStyle"
+    v-bind="_svgAttributes"
+    :style="_svgStyle"
   >
     <defs>
       <linearGradient
