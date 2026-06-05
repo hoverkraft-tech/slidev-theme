@@ -32,7 +32,7 @@ A modern, light, and professional design system for Slidev decks.
   <ul>
    <li>Clicks, lists, and presenter flow</li>
    <li>Highlighted code blocks</li>
-   <li>Typst, pager, progress, zoom, pane, and Rabbit addons</li>
+   <li>Typst, pane, Rabbit, and theme-owned deck chrome</li>
   </ul>
  </div>
 </div>
@@ -102,6 +102,8 @@ Body text uses the theme font stack for readable presentation copy. Inline code 
 
 ---
 
+Slidev's built-in `zoom:` frontmatter can scale dense slides when a section needs extra room; this deck documents the pattern with `zoom: 0.92`.
+
 ## Dense Technical Layout
 
 <div class="hk-grid mt-6" style="grid-template-columns: 1.15fr 0.85fr">
@@ -148,8 +150,8 @@ type ThemePackage = {
 
 const requiredAddons = [
   "slidev-addon-typst",
-  "slidev-component-progress",
   "slidev-pane",
+  "slidev-addon-rabbit",
 ];
 
 export function isReady(theme: ThemePackage) {
@@ -182,15 +184,14 @@ $ sum_(i=1)^n i = (n(n + 1)) / 2 $
  <div class="hk-card">
   <h3>Visible In This Deck</h3>
   <ul>
-   <li><code>slidev-component-progress</code> draws the progress indicator.</li>
-   <li><code>slidev-component-pager</code> draws slide numbers.</li>
+  <li>The global overlay renders progress and page count from <code>$nav</code>.</li>
    <li><code>slidev-addon-rabbit</code> can show time progress with <code>?time=10</code>.</li>
   </ul>
  </div>
  <div class="hk-card">
   <h3>Interaction Helpers</h3>
   <ul>
-   <li><code>slidev-component-zoom</code> adds zoom controls.</li>
+  <li>Slidev supports built-in per-slide scaling with <code>zoom:</code> frontmatter.</li>
    <li><code>slidev-pane</code> adds pane presenter mode and the <code>p</code> shortcut.</li>
    <li><code>slidev-addon-typst</code> renders Typst code blocks.</li>
   </ul>
@@ -199,20 +200,18 @@ $ sum_(i=1)^n i = (n(n + 1)) / 2 $
 
 ---
 
-## Components From Addons
+## Theme Chrome
 
-Use addon components directly when a deck needs an explicit control surface.
+Use Slidev's built-in nav context and zoom support to compose deck chrome without legacy addon dependencies.
 
 <div class="flex items-center gap-6 mt-10">
  <div class="hk-card">
-  <strong>Pager</strong>
-  <p>Also mounted globally in this showroom.</p>
-  <Pager />
+  <strong>Page overlay</strong>
+  <p>The showroom footer reads from <code>$nav.currentPage</code> and <code>$nav.total</code>.</p>
  </div>
  <div class="hk-card">
-  <strong>Zoom</strong>
-  <p>Zoom controls are available from the addon component.</p>
-  <Zoom />
+  <strong>Built-in zoom</strong>
+  <p>This slide uses <code>zoom: 0.92</code> in frontmatter to scale dense content.</p>
  </div>
 </div>
 

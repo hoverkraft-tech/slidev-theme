@@ -14,7 +14,6 @@ concurrency:
 jobs:
   ci:
     uses: ./.github/workflows/__shared-ci.yml
-    secrets: inherit
     permissions:
       actions: read
       contents: read
@@ -28,7 +27,7 @@ jobs:
     name: Publish package to npm
     needs: ci
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@6b74a8f070140f5c120f78026d58e4c00d1b1e37 # 0.24.2
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@37a362e984a1841a2be36e2f85b68755dc01d056 # 0.24.3
     permissions:
       contents: read
       packages: write

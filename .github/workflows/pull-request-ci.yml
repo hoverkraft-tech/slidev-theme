@@ -22,4 +22,3 @@ jobs:
       id-token: write
       security-events: write
       statuses: write
-    secrets: inherit

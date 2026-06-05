@@ -10,7 +10,7 @@ Install the theme in a Slidev deck:
 npm install -D @hoverkraft/slidev-theme
 ```
 
-The theme enables Typst, pager, progress, zoom, pane, and Rabbit addons by default, and ships them as package dependencies so decks do not need to install them separately:
+The theme enables Typst, pane, and Rabbit addons by default, and ships them as package dependencies so decks do not need to install them separately:
 
 ```bash
 npm install -D @hoverkraft/slidev-theme
@@ -68,11 +68,10 @@ Both components accept the following props:
 The theme enables these addons through `slidev.defaults.addons`:
 
 - [`slidev-addon-typst`](https://github.com/shigma/slidev-addon-typst)
-- [`slidev-component-pager`](https://github.com/Smile-SA/slidev-component-pager)
-- [`slidev-component-progress`](https://github.com/Smile-SA/slidev-component-progress)
-- [`slidev-component-zoom`](https://github.com/Smile-SA/slidev-component-zoom)
 - [`slidev-pane`](https://github.com/xunz3/slidev-pane)
 - [`slidev-addon-rabbit`](https://github.com/kaakaa/slidev-addon-rabbit)
+
+Slide counters and progress chrome can be built with Slidev's `$nav` global context, and slide scaling uses Slidev's built-in `zoom:` frontmatter support.
 
 ## Development
 

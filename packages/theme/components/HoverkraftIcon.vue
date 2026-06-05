@@ -1,8 +1,8 @@
 <script setup>
-const props = defineProps({
-  size: { type: String, default: "1em" },
-  label: { type: String, default: "Hoverkraft" },
-  decorative: { type: Boolean, default: false },
+const _props = defineProps({
+	size: { type: String, default: "1em" },
+	label: { type: String, default: "Hoverkraft" },
+	decorative: { type: Boolean, default: false },
 });
 </script>
 
@@ -12,11 +12,11 @@ const props = defineProps({
     xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 154.11 154.97"
     focusable="false"
-    :role="props.decorative ? undefined : 'img'"
-    :aria-label="props.decorative ? undefined : props.label"
-    :aria-hidden="props.decorative ? 'true' : undefined"
+    :role="_props.decorative ? undefined : 'img'"
+    :aria-label="_props.decorative ? undefined : _props.label"
+    :aria-hidden="_props.decorative ? 'true' : undefined"
     :style="{
-      height: props.size,
+      height: _props.size,
       width: 'auto',
       display: 'inline-block',
       verticalAlign: 'middle',

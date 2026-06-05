@@ -1,11 +1,11 @@
 :root {
-  --prism-foreground: #15202e;
-  --prism-background: #f4f7fb;
-  --prism-comment: #5b6b82;
-  --prism-keyword: #0073cc;
-  --prism-string: #1f7a3f;
-  --prism-number: #cc4400;
-  --prism-accent: #0073cc;
-  --prism-deleted: #cc4400;
-  --prism-inserted: #1f7a3f;
+	--prism-foreground: #15202e;
+	--prism-background: #f4f7fb;
+	--prism-comment: #5b6b82;
+	--prism-keyword: #0073cc;
+	--prism-string: #1f7a3f;
+	--prism-number: #cc4400;
+	--prism-accent: #0073cc;
+	--prism-deleted: #cc4400;
+	--prism-inserted: #1f7a3f;
 }
