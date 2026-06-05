@@ -5,7 +5,7 @@ on:
     outputs:
       build-artifact-id:
         description: "The artifact ID of the slides build output"
-        value: ${{ jobs.nodejs.outputs.build-artifact-id }}
+        value: ${{ jobs.package-test.outputs.build-artifact-id }}
       package-tarball-artifact-id:
         description: "The artifact ID of the uploaded package tarball"
         value: ${{ jobs.package-test.outputs.package-tarball-artifact-id }}
@@ -36,11 +36,6 @@ jobs:
       packages: read
       pull-requests: write
       security-events: write
-    with:
-      build: |
-        {
-          "artifact": ["packages/slides/dist"]
-        }
 
   package-test:
     name: Package and verify Slidev theme
@@ -48,6 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       package-tarball-artifact-id: ${{ steps.package.outputs.package-tarball-artifact-id }}
+      build-artifact-id: ${{ steps.upload-built-slides.outputs.artifact-id }}
     permissions:
       contents: read
     steps:
@@ -65,7 +61,24 @@ jobs:
         working-directory: packages/slides
         env:
           PACKAGE_TARBALL_PATH: ${{ steps.package.outputs.package-tarball-path }}
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
         run: |
           npm uninstall @hoverkraft/slidev-theme || true
           npm install "${PACKAGE_TARBALL_PATH}"
-          npm run build
+          npm run build -- --base "/${REPOSITORY_NAME}/"
+
+      - id: prepare-artifact
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          SLIDES_BUILD_PATH: ${{ github.workspace }}/packages/slides/dist
+        with:
+          script: |
+            const path = require('node:path');
+            core.setOutput('fullpath', path.resolve(process.env.SLIDES_BUILD_PATH).replace(/\/([^/]+)/, '/*$1'));
+
+      - name: Upload built slides
+        id: upload-built-slides
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: built-slides
+          path: ${{ steps.prepare-artifact.outputs.fullpath }}
