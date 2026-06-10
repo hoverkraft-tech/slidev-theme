@@ -86,6 +86,12 @@ The theme ships Hoverkraft logos as ready-to-use components.
 
 Both accept a `size` prop (any CSS length) and a `label` for accessibility; pass `decorative` to hide them from screen readers.
 
+Use `<HoverkraftFooter />` for the talk-style byline signature:
+
+<div class="mt-6">
+ <HoverkraftFooter />
+</div>
+
 ---
 
 ## Typography

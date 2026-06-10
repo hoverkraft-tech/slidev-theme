@@ -71,3 +71,13 @@ test("package ships the Hoverkraft logo components", () => {
 		);
 	}
 });
+
+test("package ships the Hoverkraft footer component", () => {
+	const source = fs.readFileSync(
+		new URL("../components/HoverkraftFooter.vue", import.meta.url),
+		"utf8",
+	);
+
+	assert.match(source, /<HoverkraftLogo\b/);
+	assert.match(source, /hk-footer-signature/);
+});

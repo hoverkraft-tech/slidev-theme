@@ -46,6 +46,7 @@ test("example deck showcases Slidev capabilities", () => {
 test("example deck showcases the Hoverkraft logo components", () => {
 	assert.match(deck, /<HoverkraftIcon\b/);
 	assert.match(deck, /<HoverkraftLogo\b/);
+	assert.match(deck, /<HoverkraftFooter\b/);
 });
 
 test("global overlay uses Slidev nav context", () => {

@@ -51,17 +51,43 @@ The theme provides the Hoverkraft logos as autoimported components, so decks can
 
 - `<HoverkraftIcon />` - the Hoverkraft pictogram.
 - `<HoverkraftLogo />` - the Hoverkraft wordmark (dark, tuned for light backgrounds).
+- `<HoverkraftFooter />` - a reusable footer signature (`by` + logo), matching the talk-style byline pattern.
 
 ```md
 <HoverkraftIcon size="4rem" />
 <HoverkraftLogo size="2.5rem" />
+<HoverkraftFooter />
 ```
 
-Both components accept the following props:
+Logo components accept the following props:
 
 - `size` (CSS length, default `1em` for the icon and `1.6em` for the wordmark) - sets the rendered height; width scales automatically.
 - `label` (string, default `Hoverkraft`) - the accessible name announced by screen readers.
 - `decorative` (boolean, default `false`) - hides the logo from assistive technology when it is purely decorative.
+
+`<HoverkraftFooter />` accepts:
+
+- `byLabel` (string, default `by`) - prefix text displayed before the logo.
+- `logoSize` (CSS length, default `1.1rem`) - rendered logo height.
+- `fixed` (boolean, default `false`) - pins the footer to the slide viewport.
+- `right` (CSS length, default `0.75rem`) - right offset when fixed.
+- `bottom` (CSS length, default `0.5rem`) - bottom offset when fixed.
+- `opacity` (number, default `0.85`) - footer opacity.
+
+Use it directly in slide content:
+
+```md
+<HoverkraftFooter />
+```
+
+Or as a global bottom layer in a deck:
+
+```vue
+<!-- global-bottom.vue -->
+<template>
+  <HoverkraftFooter v-if="$nav.currentLayout !== 'cover'" fixed />
+</template>
+```
 
 ## Default Addons
 
