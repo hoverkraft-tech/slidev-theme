@@ -27,7 +27,7 @@ jobs:
     name: Publish package to npm
     needs: ci
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@37a362e984a1841a2be36e2f85b68755dc01d056 # 0.24.3
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/release.yml@df348077afa4e79725151d50606e9dc63f86dcb6 # 0.24.4
     permissions:
       contents: read
       packages: write
@@ -47,7 +47,7 @@ jobs:
       page-url: ${{ steps.deployment.outputs.url }}
     steps:
       - id: deployment
-        uses: hoverkraft-tech/ci-github-publish/actions/deploy/github-pages@84d583ba7b357f9476707f54cf5419d630ae0145 # 0.26.2
+        uses: hoverkraft-tech/ci-github-publish/actions/deploy/github-pages@b2562b46714e535a0113f90f554b55e1248212c1 # 0.26.3
         with:
           build-path: packages/slides/dist
           build-artifact-id: ${{ needs.ci.outputs.build-artifact-id }}
