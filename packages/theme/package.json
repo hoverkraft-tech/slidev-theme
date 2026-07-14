@@ -38,7 +38,7 @@
 	"dependencies": {
 		"slidev-addon-rabbit": "^0.4.0",
 		"slidev-addon-typst": "^1.0.2",
-		"slidev-pane": "^0.1.8"
+		"slidev-pane": "^0.1.9"
 	},
 	"files": [
 		"components",
