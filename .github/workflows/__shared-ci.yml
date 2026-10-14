@@ -14,7 +14,7 @@ permissions: {}
 
 jobs:
   linter:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@4bb7594b1bf3696c54b2bbae970376056853f8ea # 0.36.0
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@3a27d31e9ccefbe9609cc9165017ed100ff34a22 # 0.38.0
     permissions:
       actions: read
       contents: read
@@ -29,7 +29,7 @@ jobs:
         VALIDATE_CSS=false
 
   nodejs:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@37a362e984a1841a2be36e2f85b68755dc01d056 # 0.24.3
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@81a4bca8445b7b273455ff26a9a5c3c31c86b2a1 # 0.25.0
     permissions:
       contents: read
       id-token: write
@@ -49,7 +49,7 @@ jobs:
     steps:
       - id: package
         name: Create package tarball
-        uses: hoverkraft-tech/ci-github-nodejs/actions/package@37a362e984a1841a2be36e2f85b68755dc01d056 # 0.24.3
+        uses: hoverkraft-tech/ci-github-nodejs/actions/package@81a4bca8445b7b273455ff26a9a5c3c31c86b2a1 # 0.25.0
         with:
           working-directory: .
           package-directory: packages/theme
@@ -78,7 +78,7 @@ jobs:
 
       - name: Upload built slides
         id: upload-built-slides
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: built-slides
           path: ${{ steps.prepare-artifact.outputs.fullpath }}
