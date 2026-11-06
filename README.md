@@ -106,17 +106,9 @@ The theme enables these addons through `slidev.defaults.addons`:
 
 Declaring `addons` in a deck replaces the theme default list, so decks that customize addons should include any Hoverkraft defaults they still need.
 
-## CI/CD
+## Maintainer documentation
 
-- Pull requests and merge queues run the shared Hoverkraft linter, Node.js build, tests, package creation, and example deck smoke test.
-- Pushes to `main` run the same checks and deploy the built example deck to GitHub Pages.
-- Tag pushes publish the verified package tarball to npm through the shared Hoverkraft release workflow.
-
-## Releasing
-
-1. Update semantic versioning in `packages/theme/package.json`.
-2. Run `make build` to validate the package and example deck.
-3. Push a tag to trigger the npm publish workflow.
+See the [documentation index](docs/README.md) for release setup and operation.
 
 ## License
 

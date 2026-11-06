@@ -5,19 +5,22 @@ on:
     outputs:
       build-artifact-id:
         description: "The artifact ID of the slides build output"
-        value: ${{ jobs.package-test.outputs.build-artifact-id }}
+        value: ${{ jobs.nodejs.outputs.build-artifact-id }}
       package-tarball-artifact-id:
         description: "The artifact ID of the uploaded package tarball"
-        value: ${{ jobs.package-test.outputs.package-tarball-artifact-id }}
+        value: ${{ jobs.nodejs.outputs.package-tarball-artifact-id }}
 
 permissions: {}
 
 jobs:
   linter:
-    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@4bb7594b1bf3696c54b2bbae970376056853f8ea # 0.36.0
+    uses: hoverkraft-tech/ci-github-common/.github/workflows/linter.yml@90211d735aa0289702ddbd7eb95b218020ccadad # 2.0.2
     permissions:
       actions: read
       contents: read
+      issues: write
+      packages: read
+      pull-requests: write
       security-events: write
       statuses: write
     with:
@@ -29,56 +32,21 @@ jobs:
         VALIDATE_CSS=false
 
   nodejs:
-    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@37a362e984a1841a2be36e2f85b68755dc01d056 # 0.24.3
+    uses: hoverkraft-tech/ci-github-nodejs/.github/workflows/continuous-integration.yml@02a04ad25ceaacdf3b7200e45fb7fec07fadf4fa # 2.1.0
     permissions:
       contents: read
       id-token: write
       packages: read
       pull-requests: write
       security-events: write
-
-  package-test:
-    name: Package and verify Slidev theme
-    needs: [linter, nodejs]
-    runs-on: ubuntu-latest
-    outputs:
-      package-tarball-artifact-id: ${{ steps.package.outputs.package-tarball-artifact-id }}
-      build-artifact-id: ${{ steps.upload-built-slides.outputs.artifact-id }}
-    permissions:
-      contents: read
-    steps:
-      - id: package
-        name: Create package tarball
-        uses: hoverkraft-tech/ci-github-nodejs/actions/package@37a362e984a1841a2be36e2f85b68755dc01d056 # 0.24.3
-        with:
-          working-directory: .
-          package-directory: packages/theme
-          build-artifact-id: ${{ needs.nodejs.outputs.build-artifact-id }}
-          build-artifact-path: /
-          version: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
-
-      - name: Build slides with packaged theme
-        working-directory: packages/slides
-        env:
-          PACKAGE_TARBALL_PATH: ${{ steps.package.outputs.package-tarball-path }}
-          REPOSITORY_NAME: ${{ github.event.repository.name }}
-        run: |
-          npm uninstall @hoverkraft/slidev-theme || true
-          npm install "${PACKAGE_TARBALL_PATH}"
-          npm run build -- --base "/${REPOSITORY_NAME}/"
-
-      - id: prepare-artifact
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
-        env:
-          SLIDES_BUILD_PATH: ${{ github.workspace }}/packages/slides/dist
-        with:
-          script: |
-            const path = require('node:path');
-            core.setOutput('fullpath', path.resolve(process.env.SLIDES_BUILD_PATH).replace(/\/([^/]+)/, '/*$1'));
-
-      - name: Upload built slides
-        id: upload-built-slides
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        with:
-          name: built-slides
-          path: ${{ steps.prepare-artifact.outputs.fullpath }}
+    with:
+      package: |
+        {
+          "test-project": "packages/slides",
+          "tests": "npm run build -- --base \"/${GITHUB_REPOSITORY#*/}/\""
+        }
+      build: |
+        {
+          "commands": ["build:pages"],
+          "artifact": "packages/slides/dist"
+        }
