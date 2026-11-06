@@ -49,4 +49,4 @@ npm run start --workspace=@hoverkraft/slidev-theme-slides    # Launch the exampl
 
 - Update `README.md`, `packages/theme/README.md`, and other existing guide files when interfaces, commands, or outputs change.
 - Keep `AGENTS.md`, `ACCESSIBILITY.md`, and workflow documentation consistent with the actual workspace behavior.
-- Keep version bumps and changelog notes aligned with the release process defined in `README.md#releasing` once present.
+- Keep version bumps and changelog notes aligned with the release process defined in [the release guide](docs/development/releasing.md).
