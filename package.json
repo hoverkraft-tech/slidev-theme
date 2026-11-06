@@ -17,6 +17,7 @@
 	],
 	"scripts": {
 		"build": "npm run build --workspaces --if-present",
+		"build:pages": "npm run build --workspace=@hoverkraft/slidev-theme && npm run build --workspace=@hoverkraft/slidev-theme-slides -- --base /slidev-theme/",
 		"start": "npm run start --workspace=@hoverkraft/slidev-theme-slides",
 		"lint": "npm run lint --workspaces --if-present",
 		"lint:fix": "npm run lint:fix --workspaces --if-present",
