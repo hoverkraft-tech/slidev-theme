@@ -17,9 +17,10 @@ jobs:
     permissions:
       actions: read
       contents: read
+      id-token: write
+      issues: write
       packages: read
       pull-requests: write
-      id-token: write
       security-events: write
       statuses: write
 
