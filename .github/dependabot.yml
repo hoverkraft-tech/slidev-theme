@@ -47,6 +47,10 @@ updates:
       interval: weekly
     cooldown:
       default-days: 7
+    groups:
+      devcontainers-dependencies:
+        patterns:
+          - "*"
 
   - package-ecosystem: "docker"
     commit-message:
